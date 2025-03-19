@@ -14,50 +14,45 @@ function calculateAge() {
 
     // Afficher le chargement
     const loadingDiv = document.getElementById('loading');
+    const resultDiv = document.getElementById('result');
     loadingDiv.classList.remove('hidden');
-    document.getElementById('result').classList.add('hidden');
+    resultDiv.classList.add('hidden');
 
     setTimeout(() => {
-        let age = today.getFullYear() - birthdate.getFullYear();
-        const monthDiff = today.getMonth() - birthdate.getMonth();
-        const dayDiff = today.getDate() - birthdate.getDate();
+        // Calcul détaillé
+        const diffMs = today - birthdate;
+        const years = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 365.25));
+        const remainingMsAfterYears = diffMs % (1000 * 60 * 60 * 24 * 365.25);
+        const months = Math.floor(remainingMsAfterYears / (1000 * 60 * 60 * 24 * 30.44));
+        const remainingMsAfterMonths = remainingMsAfterYears % (1000 * 60 * 60 * 24 * 30.44);
+        const days = Math.floor(remainingMsAfterMonths / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(diffMs / (1000 * 60 * 60));
 
-        if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
-            age--;
-        }
-
-        const daysLived = Math.floor((today - birthdate) / (1000 * 60 * 60 * 24));
-        const funFacts = [
-            `À ${age} ans, tu pourrais avoir vu environ ${age * 50} couchers de soleil mémorables !`,
-            `Tu as peut-être ri ${daysLived * 5} fois dans ta vie !`,
-            `À cet âge, tu pourrais avoir marché l'équivalent de ${Math.floor(daysLived / 100)} tours du monde !`
-        ];
-        const randomFact = funFacts[Math.floor(Math.random() * funFacts.length)];
-
-        // Afficher le résultat
+        // Afficher les résultats
         loadingDiv.classList.add('hidden');
-        const resultDiv = document.getElementById('result');
-        const ageSpan = document.getElementById('age');
-        const extraInfo = document.getElementById('extra-info');
-        const funFact = document.getElementById('fun-fact');
-
         resultDiv.classList.remove('hidden');
         resultDiv.classList.add('show-result');
 
-        let currentAge = 0;
-        const interval = setInterval(() => {
-            if (currentAge <= age) {
-                ageSpan.textContent = currentAge;
-                ageSpan.classList.add('count-up');
-                currentAge++;
-            } else {
-                clearInterval(interval);
-            }
-        }, 50);
-
-        extraInfo.textContent = `Tu as vécu environ ${daysLived} jours !`;
-        funFact.textContent = randomFact;
+        animateValue('years', 0, years, 1000);
+        animateValue('months', 0, months, 1000);
+        animateValue('days', 0, days, 1000);
+        animateValue('hours', 0, hours, 1500);
     }, 1000); // Délai pour simuler un calcul
+}
+
+function animateValue(id, start, end, duration) {
+    const element = document.getElementById(id);
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const value = Math.floor(progress * (end - start) + start);
+        element.textContent = value;
+        if (progress < 1) {
+            requestAnimationFrame(step);
+        }
+    };
+    requestAnimationFrame(step);
 }
 
 function resetForm() {
