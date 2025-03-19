@@ -1,11 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculatrice d'age</title>
+    <title>Calculatrice d'Âge</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
+    <div class="container">
+        <h1>Calcule ton âge !</h1>
+        <div class="input-section">
+            <label for="birthdate">Entre ta date de naissance :</label>
+            <input type="date" id="birthdate" max="2025-03-19">
+            <button onclick="calculateAge()">Calculer</button>
+        </div>
+        <div id="result" class="result hidden">
+            <h2>Ton âge : <span id="age">0</span> ans</h2>
+            <p id="extra-info"></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
