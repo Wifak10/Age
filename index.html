@@ -5,18 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculatrice d'Âge</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1>Calcule ton âge !</h1>
+        <h1 class="welcome">Découvre ton âge avec style !</h1>
         <div class="input-section">
-            <label for="birthdate">Entre ta date de naissance :</label>
-            <input type="date" id="birthdate" max="2025-03-19">
+            <label for="birthdate">Ta date de naissance :</label>
+            <input type="date" id="birthdate" max="2025-03-19" required>
             <button onclick="calculateAge()">Calculer</button>
         </div>
+        <div id="loading" class="loading hidden">Calcul en cours...</div>
         <div id="result" class="result hidden">
             <h2>Ton âge : <span id="age">0</span> ans</h2>
             <p id="extra-info"></p>
+            <p id="fun-fact"></p>
+            <button class="reset-btn" onclick="resetForm()">Recommencer</button>
         </div>
     </div>
     <script src="script.js"></script>
