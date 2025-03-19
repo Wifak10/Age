@@ -139,7 +139,6 @@ function animateValue(id, start, end, duration) {
 function resetForm() {
     // Joue le son de réinitialisation
     const resetSound = document.getElementById('reset-sound');
-    resetSound.play();
     
     // Vide le champ de date
     document.getElementById('birthdate').value = '';
