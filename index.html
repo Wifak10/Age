@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculatrice d'Âge Professionnelle</title>
+    <title>Calculatrice d'Âge Élégante</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Ajout de SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Calcul de ton âge</h1>
-            <p class="subtitle">Entre ta date de naissance pour découvrir ton âge en détail.</p>
+            <h1><i class="fas fa-birthday-cake"></i> Calcul de ton âge</h1>
+            <p class="subtitle">Découvre ton âge en détail avec une touche d'élégance.</p>
         </header>
         <div class="input-card">
-            <label for="birthdate">Date de naissance</label>
+            <label for="birthdate"><i class="fas fa-calendar-alt"></i> Date de naissance</label>
             <input type="date" id="birthdate" max="2025-03-19" required>
-            <button onclick="calculateAge()">Découvrir</button>
+            <button onclick="calculateAge()" id="calculate-btn"><i class="fas fa-magic"></i> Découvrir</button>
         </div>
         <div id="loading" class="loading hidden">
             <div class="spinner"></div>
@@ -26,25 +29,30 @@
             <h2>Ton âge détaillé</h2>
             <div class="age-details">
                 <div class="detail-item">
+                    <i class="fas fa-calendar-year"></i>
                     <span class="label">Années</span>
                     <span id="years" class="value">0</span>
                 </div>
                 <div class="detail-item">
+                    <i class="fas fa-calendar-month"></i>
                     <span class="label">Mois</span>
                     <span id="months" class="value">0</span>
                 </div>
                 <div class="detail-item">
+                    <i class="fas fa-calendar-day"></i>
                     <span class="label">Jours</span>
                     <span id="days" class="value">0</span>
                 </div>
                 <div class="detail-item">
+                    <i class="fas fa-clock"></i>
                     <span class="label">Heures</span>
                     <span id="hours" class="value">0</span>
                 </div>
             </div>
-            <button class="reset-btn" onclick="resetForm()">Recommencer</button>
+            <button class="reset-btn" onclick="resetForm()" id="reset-btn"><i class="fas fa-redo"></i> Recommencer</button>
         </div>
     </div>
+   
     <script src="script.js"></script>
 </body>
 </html>
