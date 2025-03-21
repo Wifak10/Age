@@ -3,56 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculatrice d'Âge Élégante</title>
+    <title>Calculateur d'Âge Minimaliste</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Ajout de SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1><i class="fas fa-birthday-cake"></i> Calcul de ton âge</h1>
-            <p class="subtitle">Découvre ton âge en détail avec une touche d'élégance.</p>
-        </header>
-        <div class="input-card">
-            <label for="birthdate"><i class="fas fa-calendar-alt"></i> Date de naissance</label>
-            <input type="date" id="birthdate" max="2025-03-19" required>
-            <button onclick="calculateAge()" id="calculate-btn"><i class="fas fa-magic"></i> Découvrir</button>
-        </div>
-        <div id="loading" class="loading hidden">
-            <div class="spinner"></div>
-            <p>Calcul en cours...</p>
-        </div>
-        <div id="result" class="result-card hidden">
-            <h2>Ton âge détaillé</h2>
-            <div class="age-details">
-                <div class="detail-item">
-                    <i class="fas fa-calendar-year"></i>
-                    <span class="label">Années</span>
-                    <span id="years" class="value">0</span>
-                </div>
-                <div class="detail-item">
-                    <i class="fas fa-calendar-month"></i>
-                    <span class="label">Mois</span>
-                    <span id="months" class="value">0</span>
-                </div>
-                <div class="detail-item">
-                    <i class="fas fa-calendar-day"></i>
-                    <span class="label">Jours</span>
-                    <span id="days" class="value">0</span>
-                </div>
-                <div class="detail-item">
-                    <i class="fas fa-clock"></i>
-                    <span class="label">Heures</span>
-                    <span id="hours" class="value">0</span>
+    <main class="calculator-wrapper">
+        <section class="header-section">
+            <h1><i class="fas fa-hourglass-half"></i> Ton Âge Révélé</h1>
+            <p>Un calcul précis, une présentation élégante</p>
+        </section>
+
+        <form class="input-section" id="age-form">
+            <div class="input-group">
+                <label>Année</label>
+                <div class="counter">
+                    <button type="button" class="counter-btn up" data-field="year"><i class="fas fa-caret-up"></i></button>
+                    <span class="counter-value" id="year" contenteditable="true">2000</span>
+                    <button type="button" class="counter-btn down" data-field="year"><i class="fas fa-caret-down"></i></button>
                 </div>
             </div>
-            <button class="reset-btn" onclick="resetForm()" id="reset-btn"><i class="fas fa-redo"></i> Recommencer</button>
-        </div>
-    </div>
-   
+            <div class="input-group">
+                <label>Mois</label>
+                <div class="counter">
+                    <button type="button" class="counter-btn up" data-field="month"><i class="fas fa-caret-up"></i></button>
+                    <span class="counter-value" id="month" contenteditable="true">1</span>
+                    <button type="button" class="counter-btn down" data-field="month"><i class="fas fa-caret-down"></i></button>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Jour</label>
+                <div class="counter">
+                    <button type="button" class="counter-btn up" data-field="day"><i class="fas fa-caret-up"></i></button>
+                    <span class="counter-value" id="day" contenteditable="true">1</span>
+                    <button type="button" class="counter-btn down" data-field="day"><i class="fas fa-caret-down"></i></button>
+                </div>
+            </div>
+            <button type="button" onclick="calculateAge()" class="submit-btn">
+                <i class="fas fa-arrow-right"></i> Calculer
+            </button>
+        </form>
+
+        <section id="result" class="result-section hidden">
+            <h2>Ton Âge en Détail</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-calendar"></i>
+                    <span class="stat-value" id="years">0</span>
+                    <span class="stat-label">Années</span>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-moon"></i>
+                    <span class="stat-value" id="months">0</span>
+                    <span class="stat-label">Mois</span>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-sun"></i>
+                    <span class="stat-value" id="days">0</span>
+                    <span class="stat-label">Jours</span>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-clock"></i>
+                    <span class="stat-value" id="hours">0</span>
+                    <span class="stat-label">Heures</span>
+                </div>
+            </div>
+            <button onclick="resetForm()" class="reset-btn">
+                <i class="fas fa-undo"></i> Nouveau Calcul
+            </button>
+        </section>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
